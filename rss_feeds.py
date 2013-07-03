@@ -33,7 +33,7 @@ while True:
     os.system('clear')
     try:
         view_entry_content(entry)
-        choice = raw_input("Use 1 to open link (requires lynx), 2 to return to list. ")
+        choice = raw_input("Use 1 to open link (requires lynx), Enter to return to list. ")
         if choice == "1":
             os.system('lynx %s' % sd.entries[entry].link)
         else:
