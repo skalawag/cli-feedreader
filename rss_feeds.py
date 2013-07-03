@@ -2,8 +2,8 @@
 
 import os
 import time
-import feedparser as fp
 import textwrap as tw
+import feedparser as fp
 
 wrapper = tw.TextWrapper()
 
