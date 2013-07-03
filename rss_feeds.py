@@ -15,6 +15,7 @@ def show_titles():
     print "-" * len("    Slashdot    ")
     for item in sd.entries:
         print sd.entries.index(item), item.title
+    print
 
 def view_entry_content(n):
     summary = sd.entries[n].summary
@@ -27,7 +28,6 @@ def view_entry_content(n):
 while True:
     os.system('clear')
     show_titles()
-    print
     entry = int(raw_input("View: "))
     os.system('clear')
     try:
