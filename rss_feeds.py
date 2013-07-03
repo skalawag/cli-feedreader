@@ -24,6 +24,7 @@ def view_entry_content(n):
     print wrapper.fill(summary[:summary.find("<")])
     print
     print sd.entries[n].link
+    print
 
 while True:
     os.system('clear')
@@ -32,7 +33,6 @@ while True:
     os.system('clear')
     try:
         view_entry_content(entry)
-        print
         choice = raw_input("Use 1 to open link (requires lynx), 2 to return to list. ")
         if choice == "1":
             os.system('lynx %s' % sd.entries[entry].link)
