@@ -30,7 +30,10 @@ def shorten(url):
 
 # feeds
 feeds = {"Slashdot": "http://rss.slashdot.org/Slashdot/slashdot",
-         "Think Progress": "http://thinkprogress.org/feed/",}
+         "Think Progress": "http://thinkprogress.org/feed/",
+         "Common Dreams": "https://www.commondreams.org/feed/views_rss",
+         "Hacker News": "https://news.ycombinator.com/rss",
+         "BoingBoing": "http://feeds.boingboing.net/boingboing/iBag",}
 keys = feeds.keys()
 
 # functions
