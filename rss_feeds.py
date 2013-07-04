@@ -10,7 +10,9 @@ import json
 wrapper = tw.TextWrapper()
 
 # url shortening
-key = open('api_key').readline()
+try:
+    key = open('api_key').readline()
+except: pass
 
 def shorten(url):
     data_string = "{'longUrl':'%s'}" % url
@@ -43,7 +45,10 @@ def show_titles(feed_name, feed):
 
 def view_entry_content(n, feed):
     summary = feed.entries[n].summary
-    short_url = shorten(feed.entries[n].link)
+    try:
+        url = shorten(feed.entries[n].link)
+    except:
+        url = feed.entries[n].link
     print feed.entries[n].title
     print "-" * len(feed.entries[n].title)
     print
