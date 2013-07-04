@@ -4,8 +4,21 @@ import os
 import time
 import textwrap as tw
 import feedparser as fp
+import urllib2
+import json
 
 wrapper = tw.TextWrapper()
+
+# url shortening
+key = open('api_key').readline()
+
+def shorten(url):
+    data_string = "{'longUrl':'%s'}" % url
+    req = urllib2.Request('https://www.googleapis.com/urlshortener/v1/url?key='+key,
+                          data=data_string,
+                          headers={'Content-Type':'application/json'})
+    res = urllib2.urlopen(req)
+    return json.load(res)['id']
 
 # feeds
 feeds = {"Slashdot": "http://rss.slashdot.org/Slashdot/slashdot",
@@ -30,12 +43,13 @@ def show_titles(feed_name, feed):
 
 def view_entry_content(n, feed):
     summary = feed.entries[n].summary
+    short_url = shorten(feed.entries[n].link)
     print feed.entries[n].title
     print "-" * len(feed.entries[n].title)
     print
     print wrapper.fill(summary[:summary.find("<")])
     print
-    print feed.entries[n].link
+    print short_url
     print
 
 while True:
