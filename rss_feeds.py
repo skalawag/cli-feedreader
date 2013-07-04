@@ -8,37 +8,52 @@ import feedparser as fp
 wrapper = tw.TextWrapper()
 
 # feeds
-slashdot = "http://rss.slashdot.org/Slashdot/slashdot"
-sd = fp.parse(slashdot)
+feeds = {"Slashdot": "http://rss.slashdot.org/Slashdot/slashdot",
+         "Think Progress": "http://thinkprogress.org/feed/",}
+keys = feeds.keys()
 
-def show_titles():
-    print "    Slashdot    "
-    print "-" * len("    Slashdot    ")
-    for item in sd.entries:
-        print sd.entries.index(item), item.title
+def show_feeds():
+    count = 1
+    for item in feeds.keys():
+        print count, item
+        count += 1
     print
 
-def view_entry_content(n):
-    summary = sd.entries[n].summary
-    print sd.entries[n].title
-    print "-" * len(sd.entries[n].title)
+def show_titles(feed_name, feed):
+    feed_name = "         " + feed_name + "    "
+    print feed_name
+    print "     " + "-" * len(feed_name)
+    print
+    for item in feed.entries:
+        print feed.entries.index(item), item.title
+    print
+
+def view_entry_content(n, feed):
+    summary = feed.entries[n].summary
+    print feed.entries[n].title
+    print "-" * len(feed.entries[n].title)
+    print
     print wrapper.fill(summary[:summary.find("<")])
     print
-    print sd.entries[n].link
+    print feed.entries[n].link
     print
 
 while True:
     os.system('clear')
-    show_titles()
+    show_feeds()
     entry = int(raw_input("View: "))
     os.system('clear')
-    try:
-        view_entry_content(entry)
-        choice = raw_input("Use 1 to open link (requires lynx), Enter to return to list. ")
-        if choice == "1":
-            os.system('lynx %s' % sd.entries[entry].link)
+    feed_name = keys[entry - 1]
+    feed = fp.parse(feeds[feed_name])
+    while True:
+        os.system('clear')
+        show_titles(feed_name, feed)
+        entry = raw_input("Which title do want? (+ to chose a new feed) ")
+        if entry == '+':
+            break
         else:
-            continue
-    except:
-        print "You fucked up. Try again."
-        time.sleep(3)
+            os.system('clear')
+            view_entry_content(int(entry), feed)
+            choice = raw_input("Use 1 to open link (requires lynx), Enter to return to list. ")
+            if choice == 1:
+                os.system('lynx %s' % sd.entries[entry].link)
