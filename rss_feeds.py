@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 
 import os
-import time
 import textwrap as tw
 import feedparser as fp
 import urllib2
