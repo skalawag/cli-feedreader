@@ -1,10 +1,17 @@
 #! /usr/bin/env python
 
+""" Simple Feed Reader: read rss feeds in the terminal. """
+
 import os
 import textwrap as tw
 import feedparser as fp
 import urllib2
 import json
+
+__author__ = "Mark Scala"
+__license__ = """This work is licensed under the Creative Commons Attribution 3.0
+Unported License. To view a copy of this license, visit
+http://creativecommons.org/licenses/by/3.0/."""
 
 wrapper = tw.TextWrapper()
 
