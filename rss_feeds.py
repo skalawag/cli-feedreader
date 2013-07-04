@@ -16,7 +16,7 @@ http://creativecommons.org/licenses/by/3.0/."""
 wrapper = tw.TextWrapper()
 
 # browser
-BROWSER = "lynx"
+BROWSER = "elinks"
 
 # url shortening
 try:
@@ -94,5 +94,5 @@ if __name__ == '__main__':
                     os.system('clear')
                     view_entry_content(int(entry), feed)
                     choice = raw_input("Use 1 to open link (requires lynx), Enter to return to list. ")
-                    if choice == 1:
-                        os.system('%s %s' % (BROWSER, sd.entries[entry].link))
+                    if choice == "1":
+                        os.system('%s %s' % (BROWSER, feed.entries[int(entry)].link))
