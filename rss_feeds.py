@@ -49,8 +49,8 @@ def view_entry_content(n, feed):
         url = shorten(feed.entries[n].link)
     except:
         url = feed.entries[n].link
-    print feed.entries[n].title
-    print "-" * len(feed.entries[n].title)
+    print "    " + feed.entries[n].title
+    print "    " + "-" * len(feed.entries[n].title)
     print
     print wrapper.fill(summary[:summary.find("<")])
     print
