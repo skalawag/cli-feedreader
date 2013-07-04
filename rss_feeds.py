@@ -26,6 +26,7 @@ feeds = {"Slashdot": "http://rss.slashdot.org/Slashdot/slashdot",
          "Think Progress": "http://thinkprogress.org/feed/",}
 keys = feeds.keys()
 
+# functions
 def show_feeds():
     count = 1
     for item in feeds.keys():
@@ -56,22 +57,23 @@ def view_entry_content(n, feed):
     print short_url
     print
 
-while True:
-    os.system('clear')
-    show_feeds()
-    entry = int(raw_input("View: "))
-    os.system('clear')
-    feed_name = keys[entry - 1]
-    feed = fp.parse(feeds[feed_name])
+if __name__ == '__main__':
     while True:
         os.system('clear')
-        show_titles(feed_name, feed)
-        entry = raw_input("Which title do want? (+ to chose a new feed) ")
-        if entry == '+':
-            break
-        else:
+        show_feeds()
+        entry = int(raw_input("View: "))
+        os.system('clear')
+        feed_name = keys[entry - 1]
+        feed = fp.parse(feeds[feed_name])
+        while True:
             os.system('clear')
-            view_entry_content(int(entry), feed)
-            choice = raw_input("Use 1 to open link (requires lynx), Enter to return to list. ")
-            if choice == 1:
-                os.system('lynx %s' % sd.entries[entry].link)
+            show_titles(feed_name, feed)
+            entry = raw_input("Which title do want? (+ to chose a new feed) ")
+            if entry == '+':
+                break
+            else:
+                os.system('clear')
+                view_entry_content(int(entry), feed)
+                choice = raw_input("Use 1 to open link (requires lynx), Enter to return to list. ")
+                if choice == 1:
+                    os.system('lynx %s' % sd.entries[entry].link)
