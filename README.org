@@ -6,3 +6,4 @@ A simple commandline feed reader in Python.  My personal Google Reader replaceme
 
   - feedparser.py
   - a google api key for url_shortening (optional)
+  - lynx (change in source to whatever you want)
