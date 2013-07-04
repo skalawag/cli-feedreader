@@ -33,18 +33,20 @@ feeds = {"Slashdot": "http://rss.slashdot.org/Slashdot/slashdot",
          "Think Progress": "http://thinkprogress.org/feed/",
          "Common Dreams": "https://www.commondreams.org/feed/views_rss",
          "Hacker News": "https://news.ycombinator.com/rss",
-         "BoingBoing": "http://feeds.boingboing.net/boingboing/iBag",}
+         "BoingBoing": "http://feeds.boingboing.net/boingboing/iBag",
+         "MIT Tech Review": "http://www.technologyreview.com/web/rss/",}
 keys = feeds.keys()
 
 # functions
 def show_feeds():
-    count = 1
+    count = 0
     for item in feeds.keys():
         print count, item
         count += 1
     print
 
 def show_titles(feed_name, feed):
+    os.system('clear')
     feed_name = "         " + feed_name + "    "
     print feed_name
     print "     " + "-" * len(feed_name)
@@ -54,36 +56,40 @@ def show_titles(feed_name, feed):
     print
 
 def view_entry_content(n, feed):
+    os.system('clear')
     summary = feed.entries[n].summary
     try:
         url = shorten(feed.entries[n].link)
     except:
         url = feed.entries[n].link
     print "    " + feed.entries[n].title
-    print "    " + "-" * len(feed.entries[n].title)
+    print "    " + ("-" * len(feed.entries[n].title))
     print
     print wrapper.fill(summary[:summary.find("<")])
     print
-    print short_url
+    print url
     print
 
 if __name__ == '__main__':
     while True:
         os.system('clear')
         show_feeds()
-        entry = int(raw_input("View: "))
-        os.system('clear')
-        feed_name = keys[entry - 1]
-        feed = fp.parse(feeds[feed_name])
-        while True:
+        entry = raw_input("View (q to quit): ")
+        if entry == 'q':
+            break
+        else:
             os.system('clear')
-            show_titles(feed_name, feed)
-            entry = raw_input("Which title do want? (+ to chose a new feed) ")
-            if entry == '+':
-                break
-            else:
+            feed_name = keys[int(entry)]
+            feed = fp.parse(feeds[feed_name])
+            while True:
                 os.system('clear')
-                view_entry_content(int(entry), feed)
-                choice = raw_input("Use 1 to open link (requires lynx), Enter to return to list. ")
-                if choice == 1:
-                    os.system('lynx %s' % sd.entries[entry].link)
+                show_titles(feed_name, feed)
+                entry = raw_input("Which title do want? (+ to chose a new feed) ")
+                if entry == '+':
+                    break
+                else:
+                    os.system('clear')
+                    view_entry_content(int(entry), feed)
+                    choice = raw_input("Use 1 to open link (requires lynx), Enter to return to list. ")
+                    if choice == 1:
+                        os.system('lynx %s' % sd.entries[entry].link)
