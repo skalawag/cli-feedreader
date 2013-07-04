@@ -1,0 +1,8 @@
+* Description
+
+A simple commandline feed reader in Python.  My personal Google Reader replacement.
+
+* Dependencies
+
+  - feedparser.py
+  - a google api key for url_shortening (optional)
