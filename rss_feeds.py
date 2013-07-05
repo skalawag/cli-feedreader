@@ -75,7 +75,6 @@ def show_titles(feed_name, feed):
                     os.system('%s %s' % (BROWSER, feed.entries[int(entry)].link))
         else:
             entries = zip([feed.entries.index(x) for x in feed.entries], feed.entries)
-
             os.system('clear')
             for x in range(start_index,target_index):
                 print entries[x][0], entries[x][1].title
