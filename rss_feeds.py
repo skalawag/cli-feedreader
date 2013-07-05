@@ -2,6 +2,7 @@
 
 """ Simple Feed Reader: read rss feeds in the terminal. """
 
+import time
 import os
 import urllib2
 import json
@@ -54,9 +55,55 @@ def show_titles(feed_name, feed):
     print feed_name
     print "     " + "-" * len(feed_name)
     print
-    for item in feed.entries:
-        print feed.entries.index(item), item.title
-    print
+    entries = [t for t in feed.entries]
+    start_index = 0
+    target_index = 25
+    while True:
+        if len(entries) < 26:
+            os.system('clear')
+            for item in entries:
+                print entries.index(item), item.title
+            print
+            entry = raw_input("Which title do want? (+ to chose a new feed) ")
+            if entry == '+':
+                break
+            else:
+                os.system('clear')
+                view_entry_content(int(entry), feed)
+                choice = raw_input("Use 1 to open link (requires lynx), Enter to return to list. ")
+                if choice == "1":
+                    os.system('%s %s' % (BROWSER, feed.entries[int(entry)].link))
+        else:
+            entries = zip([feed.entries.index(x) for x in feed.entries], feed.entries)
+
+            os.system('clear')
+            for x in range(start_index,target_index):
+                print entries[x][0], entries[x][1].title
+            print
+            ans = raw_input("More? (m), Back up? (b), View? (num), Return to feeds? (+) ")
+            if ans == 'm':
+                start_index = start_index + 25
+                if len(entries[start_index:]) >= 25:
+                    target_index = target_index + 25
+                else:
+                    target_index = len(entries[start_index:])
+            elif ans == 'b':
+                if start_index == 0:
+                    pass
+                else:
+                    target_index = start_index
+                    start_index = start_index - 25
+            elif ans == '+':
+                break
+            else:
+                try:
+                    view_entry_content(int(ans), feed)
+                    choice = raw_input("Use 1 to open link (requires lynx), Enter to return to list. ")
+                    if choice == "1":
+                        os.system('%s %s' % (BROWSER, feed.entries[int(entry)].link))
+                except:
+                    print "Input not recognizable."
+                    time.sleep(3)
 
 def view_entry_content(n, feed):
     os.system('clear')
@@ -84,15 +131,4 @@ if __name__ == '__main__':
             os.system('clear')
             feed_name = keys[int(entry)]
             feed = fp.parse(feeds[feed_name])
-            while True:
-                os.system('clear')
-                show_titles(feed_name, feed)
-                entry = raw_input("Which title do want? (+ to chose a new feed) ")
-                if entry == '+':
-                    break
-                else:
-                    os.system('clear')
-                    view_entry_content(int(entry), feed)
-                    choice = raw_input("Use 1 to open link (requires lynx), Enter to return to list. ")
-                    if choice == "1":
-                        os.system('%s %s' % (BROWSER, feed.entries[int(entry)].link))
+            show_titles(feed_name, feed)
