@@ -70,7 +70,7 @@ def show_titles(feed_name, feed):
             else:
                 os.system('clear')
                 view_entry_content(int(entry), feed)
-                choice = raw_input("Use 1 to open link (requires lynx), Enter to return to list. ")
+                choice = raw_input("Use 1 to open link, Enter to return to list. ")
                 if choice == "1":
                     os.system('%s %s' % (BROWSER, feed.entries[int(entry)].link))
         else:
@@ -97,9 +97,9 @@ def show_titles(feed_name, feed):
             else:
                 try:
                     view_entry_content(int(ans), feed)
-                    choice = raw_input("Use 1 to open link (requires lynx), Enter to return to list. ")
+                    choice = raw_input("Use 1 to open link, Enter to return to list. ")
                     if choice == "1":
-                        os.system('%s %s' % (BROWSER, feed.entries[int(entry)].link))
+                        os.system('%s %s' % (BROWSER, feed.entries[int(ans)].link))
                 except:
                     print "Input not recognizable."
                     time.sleep(3)
