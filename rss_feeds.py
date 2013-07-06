@@ -61,6 +61,9 @@ def show_titles(feed_name, feed):
     while True:
         if len(entries) < 26:
             os.system('clear')
+            head = "Stories on " + feed_name
+            print "     " + head
+            print "-" * len(head)
             for item in entries:
                 print entries.index(item), item.title
             print
@@ -76,6 +79,9 @@ def show_titles(feed_name, feed):
         else:
             entries = zip([feed.entries.index(x) for x in feed.entries], feed.entries)
             os.system('clear')
+            head = "Stories on " + feed_name
+            print "     " + head
+            print "-" * len(head)
             for x in range(start_index,target_index):
                 print entries[x][0], entries[x][1].title
             print
