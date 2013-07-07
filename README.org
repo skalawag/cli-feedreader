@@ -2,8 +2,45 @@
 
 A simple commandline feed reader in Python.  My personal Google Reader replacement.
 
-* Dependencies
+You will need to install some additional software to use this (see below).
 
-  - feedparser.py
-  - a google api key for url_shortening (optional)
-  - elinks (change in source to whatever you want)
+* Setup
+
+Install the feedparser library by any means. Perhaps the easiest way is this:
+
+#+BEGIN_SRC sh
+  pip install feedparser
+#+END_SRC
+
+The create a file called `feeds.txt' in the directory where you cloned
+or unpaced rss_feeds.py and add some feeds. The format is:
+
+#+BEGIN_QUOTE
+Feed Name, URI
+#+END_QUOTE
+
+One per line. So, for example:
+
+#+BEGIN_QUOTE
+Slashdot, http://rss.slashdot.org/Slashdot/slashdot
+Think Progress, http://thinkprogress.org/feed/
+#+END_QUOTE
+
+The feed title, the first item on each line, can be anything that is
+memorable for you.
+
+To use the url shortener, you have to get yourself a google api key
+for url shortening. Put it in a file called `api_key'.
+
+In order to browse links that appear in the content of the feeds, you
+should have a terminal browser installed, such as elinks, which has
+worked best for me so far. Other options are lynx, links, and w3m.  If
+you use something other than elinks, be sure to modify value of BROWSER.
+
+That's it. Fire it up with
+
+#+BEGIN_SRC sh
+  python rss_feeds.py
+#+END_SRC
+
+and enjoy.
