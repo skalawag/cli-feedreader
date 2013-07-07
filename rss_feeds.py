@@ -34,7 +34,7 @@ def shorten(url):
 
 # feeds
 f = open('feeds.txt')
-feeds = dict([tuple(x.split(':')) for x in f])
+feeds = dict([tuple(x.split(',')) for x in f])
 keys = feeds.keys()
 
 # functions
