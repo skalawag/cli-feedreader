@@ -38,7 +38,10 @@ feeds = {"Slashdot": "http://rss.slashdot.org/Slashdot/slashdot",
          "Common Dreams": "https://www.commondreams.org/feed/views_rss",
          "Hacker News": "https://news.ycombinator.com/rss",
          "BoingBoing": "http://feeds.boingboing.net/boingboing/iBag",
-         "MIT Tech Review": "http://www.technologyreview.com/web/rss/",}
+         "MIT Tech Review": "http://www.technologyreview.com/web/rss/",
+         "PR Watch": "http://www.prwatch.org/rss.xml",
+         "TruthOut": "http://truth-out.org/feed?format=feed",
+         "Richard Stallman": "http://stallman.org/rss/rss.xml"}
 keys = feeds.keys()
 
 # functions
@@ -65,17 +68,17 @@ def show_titles(feed_name, feed):
             print "     " + head
             print "     " + "-" * len(head)
             for item in entries:
-                print entries.index(item), item.title
+                print entries.index(item), item.title.replace('\n',' ').replace('\r',' ')
             print
-            entry = raw_input("Which title do want? (+ to chose a new feed) ")
-            if entry == '+':
-                break
-            else:
+            entry = raw_input("Which title do want? (q or Enter to chose a new feed) ")
+            try:
                 os.system('clear')
                 view_entry_content(int(entry), feed)
                 choice = raw_input("Use 1 to open link, Enter to return to list. ")
                 if choice == "1":
                     os.system('%s %s' % (BROWSER, feed.entries[int(entry)].link))
+            except:
+                break
         else:
             entries = zip([feed.entries.index(x) for x in feed.entries], feed.entries)
             os.system('clear')
@@ -83,9 +86,9 @@ def show_titles(feed_name, feed):
             print "     " + head
             print "     " + "-" * len(head)
             for x in range(start_index,target_index):
-                print entries[x][0], entries[x][1].title
+                print entries[x][0], entries[x][1].title.replace('\n', ' ').replace('\r', ' ')
             print
-            ans = raw_input("More? (m), Back up? (b), View? (num), Return to feeds? (+) ")
+            ans = raw_input("More? (m), Back up? (b), View? (num), Return to feeds? (q) ")
             if ans == 'm':
                 start_index = start_index + 25
                 if len(entries[start_index:]) >= 25:
@@ -98,7 +101,7 @@ def show_titles(feed_name, feed):
                 else:
                     target_index = start_index
                     start_index = start_index - 25
-            elif ans == '+':
+            elif ans == 'q':
                 break
             else:
                 try:
