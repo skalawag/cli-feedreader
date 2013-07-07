@@ -33,15 +33,8 @@ def shorten(url):
     return json.load(res)['id']
 
 # feeds
-feeds = {"Slashdot": "http://rss.slashdot.org/Slashdot/slashdot",
-         "Think Progress": "http://thinkprogress.org/feed/",
-         "Common Dreams": "https://www.commondreams.org/feed/views_rss",
-         "Hacker News": "https://news.ycombinator.com/rss",
-         "BoingBoing": "http://feeds.boingboing.net/boingboing/iBag",
-         "MIT Tech Review": "http://www.technologyreview.com/web/rss/",
-         "PR Watch": "http://www.prwatch.org/rss.xml",
-         "TruthOut": "http://truth-out.org/feed?format=feed",
-         "Richard Stallman": "http://stallman.org/rss/rss.xml"}
+f = open('feeds.txt')
+feeds = dict([tuple(x.split(':')) for x in f])
 keys = feeds.keys()
 
 # functions
