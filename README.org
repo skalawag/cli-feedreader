@@ -13,7 +13,7 @@ Install the feedparser library by any means. Perhaps the easiest way is this:
 #+END_SRC
 
 The create a file called `feeds.txt' in the directory where you cloned
-or unpaced rss_feeds.py and add some feeds. The format is:
+or unpacked rss_feeds.py and add some feeds. The format is:
 
 #+BEGIN_QUOTE
 Feed Name, URI
@@ -23,6 +23,7 @@ One per line. So, for example:
 
 #+BEGIN_QUOTE
 Slashdot, http://rss.slashdot.org/Slashdot/slashdot
+
 Think Progress, http://thinkprogress.org/feed/
 #+END_QUOTE
 
