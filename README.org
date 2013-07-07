@@ -22,8 +22,7 @@ Feed Name, URI
 One per line. So, for example:
 
 #+BEGIN_QUOTE
-Slashdot, http://rss.slashdot.org/Slashdot/slashdot
-
+Slashdot, http://rss.slashdot.org/Slashdot/slashdot \n
 Think Progress, http://thinkprogress.org/feed/
 #+END_QUOTE
 
