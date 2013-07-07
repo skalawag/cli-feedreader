@@ -134,6 +134,7 @@ if __name__ == '__main__':
         show_feeds()
         entry = raw_input("View (q to quit): ")
         if entry == 'q':
+            os.system('clear')
             break
         else:
             os.system('clear')
