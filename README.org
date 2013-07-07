@@ -19,11 +19,10 @@ or unpacked rss_feeds.py and add some feeds. The format is:
 Feed Name, URI
 #+END_QUOTE
 
-One per line. So, for example:
+One per line. So, for example (no blank lines):
 
 #+BEGIN_QUOTE
-Slashdot, http://rss.slashdot.org/Slashdot/slashdot
-
+Slashdot, http://rss.slashdot.org/Slashdot/slashdot \\
 Think Progress, http://thinkprogress.org/feed/
 #+END_QUOTE
 
