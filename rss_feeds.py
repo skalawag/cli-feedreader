@@ -67,8 +67,8 @@ def show_titles(feed_name, feed):
             try:
                 os.system('clear')
                 view_entry_content(int(entry), feed)
-                choice = raw_input("Use 1 to open link, Enter to return to list. ")
-                if choice == "1":
+                choice = raw_input("Use g to open link, Enter to return to list. ")
+                if choice == "g":
                     os.system('%s %s' % (BROWSER, feed.entries[int(entry)].link))
             except:
                 break
@@ -81,7 +81,7 @@ def show_titles(feed_name, feed):
             for x in range(start_index,target_index):
                 print entries[x][0], entries[x][1].title.replace('\n', ' ').replace('\r', ' ')
             print
-            ans = raw_input("More? (m), Back up? (b), View? (num), Return to feeds? (q) ")
+            ans = raw_input("More? (m), Back up? (b), View? (num), Enter to feeds? (q) ")
             if ans == 'm':
                 start_index = start_index + 25
                 if len(entries[start_index:]) >= 25:
@@ -99,8 +99,8 @@ def show_titles(feed_name, feed):
             else:
                 try:
                     view_entry_content(int(ans), feed)
-                    choice = raw_input("Use 1 to open link, Enter to return to list. ")
-                    if choice == "1":
+                    choice = raw_input("Use g to open link, Enter to return to list. ")
+                    if choice == "g":
                         os.system('%s %s' % (BROWSER, feed.entries[int(ans)].link))
                 except:
                     print "Input not recognizable."
