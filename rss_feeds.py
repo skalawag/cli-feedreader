@@ -8,6 +8,7 @@ import urllib2
 import json
 import textwrap as tw
 import feedparser as fp
+import BeautifulSoup as bs
 
 __author__ = "Mark Scala"
 __license__ = """This work is licensed under the Creative Commons Attribution 3.0
@@ -108,7 +109,7 @@ def show_titles(feed_name, feed):
 
 def view_entry_content(n, feed):
     os.system('clear')
-    summary = feed.entries[n].summary
+    summary = bs.BeautifulSoup(feed.entries[n].summary).text
     try:
         url = shorten(feed.entries[n].link)
     except:
@@ -116,7 +117,7 @@ def view_entry_content(n, feed):
     print "    " + feed.entries[n].title
     print "    " + ("-" * len(feed.entries[n].title))
     print
-    print wrapper.fill(summary[:summary.find("<")])
+    print wrapper.fill(summary)
     print
     print url
     print
